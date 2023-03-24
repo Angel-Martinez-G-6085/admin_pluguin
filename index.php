@@ -12,8 +12,9 @@ function register_all_scripts() {
 	wp_register_script('jquery', plugin_dir_url( __FILE__ ) . '/libs/jquery.js', false);
 	wp_register_script('jqueryUI', plugin_dir_url( __FILE__ ) . '/libs/jquery-ui.js', false);
     wp_register_script('eliminarAjustes', plugin_dir_url( __FILE__ ) . '/js/eliminarAjustes.js', false);
+    wp_register_script('calendar', plugin_dir_url( __FILE__ ) . '/js/calendar.js', false);
     wp_register_script('peticionCalendario', plugin_dir_url( __FILE__ ) . '/js/peticionCalendario.js', false);
-	wp_register_script('Adminmain', plugin_dir_url( __FILE__ ) . '/js/main.js', array('jquery', 'jqueryUI', 'eliminarAjustes'));
+	wp_register_script('Adminmain', plugin_dir_url( __FILE__ ) . '/js/main.js', array('jquery', 'jqueryUI', 'eliminarAjustes','calendar'));
 }
 
 function admin_scripts() {
@@ -90,6 +91,7 @@ function admin_scripts() {
         <button id="signout_button" class="signOut">Cerrar Sesión</button>
     </div>
 </div>
+<script async defer src="https://accounts.google.com/gsi/client"></script>
 	<?php
  }
 
