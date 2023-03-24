@@ -85,6 +85,10 @@ function admin_scripts() {
         <div class="formulario_admin_enviar_datos_container">
         <button class="formulario_admin_enviar_datos_button">Enviar Datos</button>
     </div>
+    <div>
+        <button id="authorize_button" class="login">Iniciar con Google</button>
+        <button id="signout_button" class="signOut">Cerrar Sesión</button>
+    </div>
 </div>
 	<?php
  }
