@@ -1,0 +1,28 @@
+.formularios-config-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.formularios-results-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.selector-fecha-hora-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    margin-bottom: 30px;
+}
+
+.administration-title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.fecha_inhabil_admin_container {
+    display: flex;
+}
