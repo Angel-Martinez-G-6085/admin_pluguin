@@ -37,18 +37,7 @@ document.onreadystatechange = () => {
         })
 
         enviarDatosButton.addEventListener("click", () => {
-            mandar_datos_calendario();
+            localStorage.setItem("fechas",JSON.stringify(listaFechas));
         })
-
-        function mandar_datos_calendario() {
-            fetch('http://localhost/www/frecuentum/wp-admin/admin-ajax.php', {
-                headers : {
-                    "Content-Type": "application/json"
-                },
-                method: 'POST',
-                body: '{"nombre": "angel"}'
-            })
-            .then((data) => console.log(data))
-        }
     }
 };

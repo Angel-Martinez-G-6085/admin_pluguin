@@ -13,7 +13,6 @@ function register_all_scripts() {
 	wp_register_script('jqueryUI', plugin_dir_url( __FILE__ ) . '/libs/jquery-ui.js', false);
     wp_register_script('eliminarAjustes', plugin_dir_url( __FILE__ ) . '/js/eliminarAjustes.js', false);
     wp_register_script('calendar', plugin_dir_url( __FILE__ ) . '/js/calendar.js', false);
-    wp_register_script('peticionCalendario', plugin_dir_url( __FILE__ ) . '/js/peticionCalendario.js', false);
 	wp_register_script('Adminmain', plugin_dir_url( __FILE__ ) . '/js/main.js', array('jquery', 'jqueryUI', 'eliminarAjustes','calendar'));
 }
 
@@ -95,18 +94,7 @@ function admin_scripts() {
 	<?php
  }
 
- function my_plugin_variable() {
-    return 'Hello, world!';
-}
 
-
-function my_enqueue_scripts() {
-    wp_enqueue_script( 'my-script', plugin_dir_url( __FILE__ ) . 'js/my-script.js', array( 'jquery' ) );
-    wp_localize_script( 'my-script', 'myPluginData', array(
-        'myVariable' => my_plugin_variable()
-    ) );
-}
-add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
  add_action( 'admin_menu', 'my_admin_menu' );
  add_action( 'wp_loaded', 'register_all_scripts' );
  add_action( 'admin_enqueue_scripts', 'admin_scripts');
