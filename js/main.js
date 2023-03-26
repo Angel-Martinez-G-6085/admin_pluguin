@@ -38,6 +38,7 @@ document.onreadystatechange = () => {
 
         enviarDatosButton.addEventListener("click", () => {
             localStorage.setItem("fechas",JSON.stringify(listaFechas));
+            localStorage.setItem("horarios",JSON.stringify(horariosDefecto));
         })
     }
 };
