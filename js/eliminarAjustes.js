@@ -40,6 +40,41 @@ function agregar_horarios(input) {
     }
 }
 
+function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
+    if(inputFecha.value != "" || inputHorario.value != "") {
+        //Creamos elementos del nuevo click
+        let objetoFechaHora = {
+            fecha: '',
+            horarios: []
+        };
+        let newDiv = document.createElement("div");
+        let newDate = document.createElement("p");
+        let newList = document.createElement("ul");
+        let newListItem = document.createElement("li");
+        let newButton = document.createElement("button");
+        let Fechas_y_horariosContenedor = document.querySelector(".horarios_fechas_especificas");
+
+        newDiv.classList.add("fecha_horario_especifico_admin_container");
+        objetoFechaHora.fecha = inputFecha.value;
+        objetoFechaHora.horarios.push(inputHorario.value);
+        listaFechasEspecificas.push(objetoFechaHora);
+        newDate.classList.add("hora_agregada");
+        newDate.textContent = inputFecha.value;
+        newDiv.appendChild(newDate);
+        newDiv.appendChild(newList);
+        let horario = objetoFechaHora.horarios[0];
+        newListItem.textContent = horario;
+        newList.appendChild(newListItem);
+        inputHorario.value = "";
+
+        //Creacion del boton
+        newButton.textContent = "eliminar";
+        newButton.classList.add("boton_admin_eliminar_fecha_horario_especifico");
+        newDiv.appendChild(newButton);
+        Fechas_y_horariosContenedor.appendChild(newDiv);
+    }
+}
+
 function eliminarBotonesFechas() {
     let botones = document.querySelectorAll(".boton_admin_eliminar");
     botones.forEach(element => {
@@ -76,4 +111,18 @@ function eliminarHorario(horario, contenedor) {
         horariosDefecto.splice(indice, 1);
         contenedor.remove();
     }
+}
+
+function fechaEspecificaExiste(fecha, fechas) {
+    let objectToFind = {
+        fecha: fecha
+    }
+
+    if (fechas.some(item => JSON.stringify(item.fecha) === JSON.stringify(objectToFind.fecha))) {
+        console.log(item);
+    }
+}
+
+function agregarHorarioEspecifico(horario) {
+
 }
