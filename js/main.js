@@ -1,6 +1,7 @@
 const listaFechas = [];
 const horariosDefecto = [];
 const listaFechasEspecificas = [];
+const citaAgendada = [];
 
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
@@ -23,7 +24,7 @@ document.onreadystatechange = () => {
             let day = filterDate.getDay();
             let isHoliday = (jQuery.inArray(string, holiDays) != -1);
             return [day != 6 && day !=5 && !isHoliday]
-         }
+        }
 
         jQuery( "#date" ).datepicker({
             minDate: 0,
@@ -52,16 +53,20 @@ document.onreadystatechange = () => {
         })
 
         AgregarFechasHorasEspecificas.addEventListener("click", () => {
-            console.log("hora y fechas especificos agregados");
-            if(fechaEspecificaExiste(FechaEspecificaInput.value, listaFechasEspecificas) == true) {
-                console.log("esta fecha ya fue agregada")
+            if(fechaEspecificaExiste(FechaEspecificaInput.value, listaFechasEspecificas)) {
+                let fecha = fechaEspecificaExiste(FechaEspecificaInput.value, listaFechasEspecificas)
+                agregarHorarioEspecifico(fecha,HoraEspecificaInput.value);
+                HoraEspecificaInput.value = "";
+            } else {
+                agregar_fecha_hora_especifica(FechaEspecificaInput, HoraEspecificaInput);
             }
-            agregar_fecha_hora_especifica(FechaEspecificaInput, HoraEspecificaInput);
         })
 
         enviarDatosButton.addEventListener("click", () => {
             localStorage.setItem("fechas",JSON.stringify(listaFechas));
             localStorage.setItem("horarios",JSON.stringify(horariosDefecto));
+            localStorage.setItem("fechaHoraESpecificos",JSON.stringify(listaFechasEspecificas));
+            localStorage.setItem("citasAgendadas",JSON.stringify(citaAgendada));
         })
     }
 };

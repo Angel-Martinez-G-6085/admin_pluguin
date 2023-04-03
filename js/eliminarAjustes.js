@@ -41,7 +41,7 @@ function agregar_horarios(input) {
 }
 
 function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
-    if(inputFecha.value != "" || inputHorario.value != "") {
+    if(inputFecha.value != "" && inputHorario.value != "") {
         //Creamos elementos del nuevo click
         let objetoFechaHora = {
             fecha: '',
@@ -50,7 +50,9 @@ function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
         let newDiv = document.createElement("div");
         let newDate = document.createElement("p");
         let newList = document.createElement("ul");
+        newList.classList.add("lista_horarios");
         let newListItem = document.createElement("li");
+        newListItem.classList.add("listItemContainer");
         let newButton = document.createElement("button");
         let Fechas_y_horariosContenedor = document.querySelector(".horarios_fechas_especificas");
 
@@ -68,7 +70,7 @@ function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
         inputHorario.value = "";
 
         //Creacion del boton
-        newButton.textContent = "eliminar";
+        newButton.textContent = "eliminar fecha y horas";
         newButton.classList.add("boton_admin_eliminar_fecha_horario_especifico");
         newDiv.appendChild(newButton);
         Fechas_y_horariosContenedor.appendChild(newDiv);
@@ -91,6 +93,22 @@ function eliminarBotonesHorarios() {
         element.addEventListener("click", function quienSoy(evento) {
             let padre = this.parentNode;
             eliminarHorario(padre.firstChild.textContent, padre);
+        })
+    });
+}
+
+function eliminarFechaHoraEspecificoButtons() {
+    let botones = document.querySelectorAll(".admin_eliminar_horario_especifico_button");
+    botones.forEach(element => {
+        element.addEventListener("click", function eliminarHoraBoton(evento) {
+            let padre = this.parentNode;
+            listaFechasEspecificas.forEach((element) => {
+                if(element.horarios.includes(padre.firstChild.textContent)) {
+                    let index = element.horarios.indexOf(padre.firstChild.textContent);
+                    element.horarios.splice(index, 1);
+                    padre.remove();
+                }
+            });
         })
     });
 }
@@ -119,10 +137,29 @@ function fechaEspecificaExiste(fecha, fechas) {
     }
 
     if (fechas.some(item => JSON.stringify(item.fecha) === JSON.stringify(objectToFind.fecha))) {
-        console.log(item);
+        return fecha;
     }
 }
 
-function agregarHorarioEspecifico(horario) {
-
+function agregarHorarioEspecifico(fecha,horarioNuevo) {
+    listaFechasEspecificas.forEach((element, index) => {
+        if(element.fecha == fecha) {
+            let newButton = document.createElement("button");
+            newButton.classList.add("admin_eliminar_horario_especifico_button");
+            newButton.textContent = "eliminar horario";
+            let containerElement = document.querySelectorAll(".fecha_horario_especifico_admin_container");
+            containerElement.forEach((element) => {
+                if(element.firstChild.textContent == fecha) {
+                    let ulElement = element.children[1];
+                    let newItem = document.createElement("li");
+                    let FechaModificar = listaFechasEspecificas[index];
+                    FechaModificar.horarios.push(horarioNuevo);
+                    newItem.textContent = horarioNuevo;
+                    newItem.appendChild(newButton);
+                    ulElement.appendChild(newItem);
+                    eliminarFechaHoraEspecificoButtons();
+                }
+            })
+        }
+    })
 }
