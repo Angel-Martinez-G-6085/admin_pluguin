@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function ResponseCallback() {
         tokenClient.callback = (res) => {
           let code = res.code;
-          fetch(`https://oauth2.googleapis.com/token?code=${code}&client_id=${Client_Id}&client_secret=${Client_Secret}&redirect_uri=http://localhost&grant_type=authorization_code`,{
+          fetch(`https://oauth2.googleapis.com/token?code=${code}&client_id=${Client_Id}&client_secret=${Client_Secret}&redirect_uri=http://localhost:9090&grant_type=authorization_code`,{
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
             })

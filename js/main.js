@@ -1,3 +1,8 @@
+let horariosDefectoCargados = localStorage.getItem("horarios");
+horariosDefectoCargados = JSON.parse(horariosDefectoCargados);
+
+
+
 const listaFechas = [];
 const horariosDefecto = [];
 const listaFechasEspecificas = [];
@@ -17,7 +22,13 @@ document.onreadystatechange = () => {
         const HoraEspecificaInput = document.querySelector(".hora_especifica_input");
         const enviarDatosButton = document.querySelector(".formulario_admin_enviar_datos_button");
 
+        if(horariosDefectoCargados.length >= 0) {
+            cargarHorarios(horariosDefectoCargados);
+            eliminarBotonesHorariosCargados();
+        }
+
         let holiDays = listaFechas;
+
         function disableHoliday(date) {
             let string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             let filterDate = new Date(string);
@@ -69,4 +80,6 @@ document.onreadystatechange = () => {
             localStorage.setItem("citasAgendadas",JSON.stringify(citaAgendada));
         })
     }
+
+    
 };

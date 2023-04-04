@@ -20,7 +20,7 @@ function agregar_fechas_no_usadas(input) {
 }
 
 function agregar_horarios(input) {
-    if(input.value != "") {
+        if(input.value != "") {
         //Creamos elementos del nuevo click
         let newDiv = document.createElement("div");
         let newDate = document.createElement("p");

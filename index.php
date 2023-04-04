@@ -11,9 +11,10 @@ function admin_styles() {
 function register_all_scripts() {
 	wp_register_script('jquery', plugin_dir_url( __FILE__ ) . '/libs/jquery.js', false);
 	wp_register_script('jqueryUI', plugin_dir_url( __FILE__ ) . '/libs/jquery-ui.js', false);
+	wp_register_script('eliminarAjustsCargados', plugin_dir_url( __FILE__ ) . '/js/eliminarAjustsCargados.js', false);
     wp_register_script('eliminarAjustes', plugin_dir_url( __FILE__ ) . '/js/eliminarAjustes.js', false);
     wp_register_script('calendar', plugin_dir_url( __FILE__ ) . '/js/calendar.js', false);
-	wp_register_script('Adminmain', plugin_dir_url( __FILE__ ) . '/js/main.js', array('jquery', 'jqueryUI', 'eliminarAjustes','calendar'));
+	wp_register_script('Adminmain', plugin_dir_url( __FILE__ ) . '/js/main.js', array('jquery', 'jqueryUI', 'eliminarAjustsCargados', 'eliminarAjustes','calendar'));
 }
 
 function admin_scripts() {
