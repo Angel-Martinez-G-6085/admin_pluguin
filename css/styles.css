@@ -26,3 +26,13 @@
 .fecha_inhabil_admin_container {
     display: flex;
 }
+
+.listItemContainer {
+    display: flex;
+    align-items: center;
+}
+
+.admin_eliminar_horario_especifico_cargado,
+.admin_eliminar_horario_especifico_button {
+    height: 30px;
+}

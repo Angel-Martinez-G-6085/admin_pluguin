@@ -177,6 +177,7 @@ function agregarHorarioEspecifico(fecha,horarioNuevo) {
                 if(element.firstChild.textContent == fecha) {
                     let ulElement = element.children[1];
                     let newItem = document.createElement("li");
+                    newItem.classList.add("listItemContainer")
                     let FechaModificar = listaFechasEspecificas[index];
                     FechaModificar.horarios.push(horarioNuevo);
                     newItem.textContent = horarioNuevo;

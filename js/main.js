@@ -36,10 +36,11 @@ document.onreadystatechange = () => {
             eliminarBotonesFechasCargadas();
         }
 
-        // if(fechasHorasEspecificasCargadas.length >=0) {
-        //     cargar_fecha_hora_especifica();
-        //     eliminarFechaHoraEspecificoButtonsCargados();
-        // }
+        if(fechasHorasEspecificasCargadas.length >=0) {
+            cargar_fecha_hora_especifica();
+            eliminarFechaHoraEspecificoButtonsCargados();
+            eliminarFechasHorasEspecificasButtonsCargados();
+        }
 
         let holiDays = listaFechas;
 
