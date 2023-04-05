@@ -1,7 +1,11 @@
 let horariosDefectoCargados = localStorage.getItem("horarios");
 horariosDefectoCargados = JSON.parse(horariosDefectoCargados);
 
+let fechasInhabilesCargadas = localStorage.getItem("fechas");
+fechasInhabilesCargadas = JSON.parse(fechasInhabilesCargadas);
 
+let fechasHorasEspecificasCargadas = localStorage.getItem("fechaHoraESpecificos");
+fechasHorasEspecificasCargadas = JSON.parse(fechasHorasEspecificasCargadas);
 
 const listaFechas = [];
 const horariosDefecto = [];
@@ -26,6 +30,16 @@ document.onreadystatechange = () => {
             cargarHorarios(horariosDefectoCargados);
             eliminarBotonesHorariosCargados();
         }
+
+        if(fechasInhabilesCargadas.length >= 0) {
+            cargarFechaINhabil(fechasInhabilesCargadas);
+            eliminarBotonesFechasCargadas();
+        }
+
+        // if(fechasHorasEspecificasCargadas.length >=0) {
+        //     cargar_fecha_hora_especifica();
+        //     eliminarFechaHoraEspecificoButtonsCargados();
+        // }
 
         let holiDays = listaFechas;
 
@@ -71,6 +85,8 @@ document.onreadystatechange = () => {
             } else {
                 agregar_fecha_hora_especifica(FechaEspecificaInput, HoraEspecificaInput);
             }
+            eliminarFechaHoraEspecificoButtons();
+            eliminarFechasHorasEspecificasButtons();
         })
 
         enviarDatosButton.addEventListener("click", () => {

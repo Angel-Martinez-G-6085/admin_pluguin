@@ -54,6 +54,7 @@ function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
         let newListItem = document.createElement("li");
         newListItem.classList.add("listItemContainer");
         let newButton = document.createElement("button");
+        let newButtonHorario = document.createElement("button");
         let Fechas_y_horariosContenedor = document.querySelector(".horarios_fechas_especificas");
 
         newDiv.classList.add("fecha_horario_especifico_admin_container");
@@ -67,6 +68,9 @@ function agregar_fecha_hora_especifica(inputFecha, inputHorario) {
         let horario = objetoFechaHora.horarios[0];
         newListItem.textContent = horario;
         newList.appendChild(newListItem);
+        newButtonHorario.textContent = "eliminar horario";
+        newButtonHorario.classList.add("admin_eliminar_horario_especifico_button");
+        newListItem.appendChild(newButtonHorario);
         inputHorario.value = "";
 
         //Creacion del boton
@@ -113,6 +117,17 @@ function eliminarFechaHoraEspecificoButtons() {
     });
 }
 
+function eliminarFechasHorasEspecificasButtons() {
+    let botones = document.querySelectorAll(".boton_admin_eliminar_fecha_horario_especifico");
+    botones.forEach((boton) => {
+        boton.addEventListener("click", function BotonEliminarHorasFechas() {
+            let padre = this.parentNode;
+            let fechaEncontrar = padre.firstChild.textContent;
+            eliminarFechasHorasEspecificas(fechaEncontrar, padre);
+        })
+    })
+}
+
 function eliminarFecha(fecha, contenedor) {
     let existe = listaFechas.includes(fecha,0);
     if(existe == true) {
@@ -139,6 +154,16 @@ function fechaEspecificaExiste(fecha, fechas) {
     if (fechas.some(item => JSON.stringify(item.fecha) === JSON.stringify(objectToFind.fecha))) {
         return fecha;
     }
+}
+
+function eliminarFechasHorasEspecificas(fecha, contenedor) {
+    listaFechasEspecificas.forEach((element) => {
+        if(element.fecha == fecha) {
+            let index = listaFechasEspecificas.indexOf(element);
+            listaFechasEspecificas.splice(index, 1);
+            contenedor.remove();
+        }
+    })
 }
 
 function agregarHorarioEspecifico(fecha,horarioNuevo) {
