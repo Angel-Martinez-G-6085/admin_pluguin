@@ -1,3 +1,4 @@
+//Nueva rama
 document.addEventListener('DOMContentLoaded', () => {
     let login = document.querySelector(".login");
     let signOu = document.querySelector(".signOut");
